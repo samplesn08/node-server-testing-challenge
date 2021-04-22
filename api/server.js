@@ -2,6 +2,8 @@ const express = require('express');
 const userRoutes = require('./users-router');
 const server = express()
 
+server.use(express.json());
+
 
 server.use('/api/users', userRoutes)
 

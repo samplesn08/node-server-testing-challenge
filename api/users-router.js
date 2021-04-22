@@ -24,8 +24,7 @@ router.get('/:id', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-    const newUser = req.body;
-    Users.add(newUser)
+    Users.add(req.body)
         .then(user => {
             res.status(201).json(user)
         })
@@ -50,7 +49,7 @@ router.delete('/:id', (req, res) => {
     const {id} = req.params;
     Users.remove(id)
         .then(() => {
-            res.send("User deleted successfully")
+            res.status(200).json("User deleted successfully")
         })
         .catch(err => {
             res.status(500).json({ message: err.message })

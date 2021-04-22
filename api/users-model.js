@@ -9,10 +9,11 @@ const findById = (id) => {
         .where({ user_id: id }).first()
 }
 
-const add = (newUser) => {
-    return db('users')
+const add = async (newUser) => {
+    const [id] = await db('users')
         .insert(newUser)
-        .then(ids => ({ user_id: ids[0] }))
+    return db('users')
+        .where('user_id', id).first()
 }
 
 const edit = (id, newInfo) => {
